@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.Adapter.Adapter;
 import com.example.myapplication.Adapter.Usuarios;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue queue;
     ArrayList<Usuarios> arrayListUsuarios = new ArrayList<>();
     Gson gson= new Gson();
-
+    RecyclerView recyclerViewUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         inicializar();
         descargarDatos();
+        llenaRecycler();
 
+    }
+
+    private void llenaRecycler() {
+
+        Adapter adapter = new Adapter(arrayListUsuarios, this);
+
+        recyclerViewUsuario.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerViewUsuario.setHasFixedSize(true);
+        recyclerViewUsuario.setAdapter(adapter);
     }
 
     private void descargarDatos() {
@@ -50,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 Type type = new TypeToken<List<Usuarios>>() {
                 }.getType();
                 arrayListUsuarios = gson.fromJson(response, type);
-                Log.e("LLEGA", arrayListUsuarios.toString());
+                llenaRecycler();
+
 
             }
         }, new Response.ErrorListener() {
@@ -73,5 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void inicializar() {
         queue= Volley.newRequestQueue(this);
+        recyclerViewUsuario=findViewById(R.id.Recycler_view);
     }
 }
