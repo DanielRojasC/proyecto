@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Clases.Posts;
 import com.example.myapplication.MainActivity;
+import com.example.myapplication.PostActivity;
 import com.example.myapplication.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
     }
 
 
-    public AdapterPosts(ArrayList<Posts> Posts, MainActivity mainActivity)
+    public AdapterPosts(ArrayList<Posts> Posts, PostActivity mainActivity)
     {
         this.Posts = Posts;
     }
@@ -40,7 +43,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
     @Override
     public AdapterPosts.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_detalle, parent, false);
         return new AdapterPosts.Holder(view);
     }
 
@@ -65,8 +68,9 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
     {
 
 
-        TextView txtUsername;
-        TextView txtEmail;
+        TextView txtTitulo;
+        TextView txtContenido;
+        TextView txtDescripcion;
 
         public Holder(final View itemView)
         {
@@ -88,8 +92,10 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
                 }
             });
 
-            txtUsername  =itemView.findViewById(R.id.username);
-            txtEmail=itemView.findViewById(R.id.descripcion);
+
+            txtTitulo=itemView.findViewById(R.id.username);
+            txtContenido=itemView.findViewById(R.id.contenido);
+            txtDescripcion=itemView.findViewById(R.id.descripcion);
 
 
 
@@ -98,7 +104,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
         public void fijarDatos(Posts Posts)
         {
 
-            //AQUI SETEAS LOS TEXTVIEW
+            txtTitulo.setText("Título: "+Posts.getTitle());
+            txtContenido.setText("Contenido: \n"+Posts.getBody());
 
         }
     }

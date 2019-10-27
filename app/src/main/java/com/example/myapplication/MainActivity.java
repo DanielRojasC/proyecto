@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     Gson gson= new Gson();
     RecyclerView recyclerViewUsuario;
     static public ArrayList<Posts> arrayListPosts= new ArrayList<>();
+
+    static public String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setMlistener(new Adapter.OnClickListener() {
             @Override
-            public void itemClick(int position, View itemView) {
+            public void itemClick(final int position, View itemView) {
                 String id=arrayListUsuarios.get(position).getId();
                 String url="https://jsonplaceholder.typicode.com/posts?userId="+id;
                 StringRequest requestPosts= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
                         Type type = new TypeToken<List<Posts>>() {
                         }.getType();
                         arrayListPosts = gson.fromJson(response, type);
+                        userName=arrayListUsuarios.get(position).getUsername();
+                        Intent intent= new Intent(getApplicationContext(), PostActivity.class);
+                        startActivity(intent);
 
                     }
                 }, new Response.ErrorListener() {
