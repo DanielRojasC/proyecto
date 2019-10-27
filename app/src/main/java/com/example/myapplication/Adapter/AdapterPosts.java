@@ -1,40 +1,36 @@
 package com.example.myapplication.Adapter;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-//import androidx.recyclerview.widget.RecyclerView;
-
 import androidx.annotation.NonNull;
-
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Clases.Usuarios;
+import com.example.myapplication.Clases.Posts;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
+public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
 
-    ArrayList<com.example.myapplication.Clases.Usuarios> Usuarios;
+    ArrayList<com.example.myapplication.Clases.Posts> Posts;
 
-    private OnClickListener mlistener;
+    private AdapterPosts.OnClickListener mlistener;
     public interface OnClickListener
     {
         void itemClick(int position, View itemView);
     }
 
 
-    public Adapter(ArrayList<Usuarios> Usuarios, MainActivity mainActivity)
+    public AdapterPosts(ArrayList<Posts> Posts, MainActivity mainActivity)
     {
-        this.Usuarios = Usuarios;
+        this.Posts = Posts;
     }
 
-    public void setMlistener(OnClickListener mlistener)
+    public void setMlistener(AdapterPosts.OnClickListener mlistener)
     {
         this.mlistener= mlistener;
     }
@@ -42,17 +38,17 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
 
     @NonNull
     @Override
-    public Adapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public AdapterPosts.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
-        return new Adapter.Holder(view);
+        return new AdapterPosts.Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.Holder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterPosts.Holder holder, int position) {
 
 
-        holder.fijarDatos(Usuarios.get(position));
+        holder.fijarDatos(Posts.get(position));
 
     }
 
@@ -60,7 +56,7 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
     @Override
     public int getItemCount()
     {
-        return Usuarios.size();
+        return Posts.size();
     }
 
 
@@ -99,12 +95,10 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
 
         }
 
-        public void fijarDatos(Usuarios Usuarios)
+        public void fijarDatos(Posts Posts)
         {
 
-            txtUsername.setText(Usuarios.getUsername());
-            txtEmail.setText(Usuarios.getEmail());
-
+            //AQUI SETEAS LOS TEXTVIEW
 
         }
     }

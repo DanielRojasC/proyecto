@@ -1,4 +1,4 @@
-package com.example.myapplication.Adapter;
+package com.example.myapplication.Clases;
 
 public class Compañia {
     public Compañia() {

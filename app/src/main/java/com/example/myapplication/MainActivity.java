@@ -1,8 +1,9 @@
 package com.example.myapplication;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +16,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.Adapter;
-import com.example.myapplication.Adapter.Usuarios;
+import com.example.myapplication.Clases.Posts;
+import com.example.myapplication.Clases.Usuarios;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Usuarios> arrayListUsuarios = new ArrayList<>();
     Gson gson= new Gson();
     RecyclerView recyclerViewUsuario;
+    static public ArrayList<Posts> arrayListPosts= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         inicializar();
         descargarDatos();
-        llenaRecycler();
 
-    }
 
-    private void llenaRecycler() {
-
-        Adapter adapter = new Adapter(arrayListUsuarios, this);
-
-        recyclerViewUsuario.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerViewUsuario.setHasFixedSize(true);
-        recyclerViewUsuario.setAdapter(adapter);
     }
 
     private void descargarDatos() {
@@ -78,6 +72,39 @@ public class MainActivity extends AppCompatActivity {
         queue.add(requestInicio);
 
 
+    }
+
+    private void llenaRecycler() {
+
+        Adapter adapter = new Adapter(arrayListUsuarios, this);
+
+        recyclerViewUsuario.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerViewUsuario.setHasFixedSize(true);
+        recyclerViewUsuario.setAdapter(adapter);
+
+        adapter.setMlistener(new Adapter.OnClickListener() {
+            @Override
+            public void itemClick(int position, View itemView) {
+                String id=arrayListUsuarios.get(position).getId();
+                String url="https://jsonplaceholder.typicode.com/posts?userId="+id;
+                StringRequest requestPosts= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Type type = new TypeToken<List<Posts>>() {
+                        }.getType();
+                        arrayListPosts = gson.fromJson(response, type);
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                queue.add(requestPosts);
+
+            }
+        });
     }
 
     private String quitarSaltos(String response) {
