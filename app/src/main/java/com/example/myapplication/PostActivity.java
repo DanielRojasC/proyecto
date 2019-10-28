@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.myapplication.Adapter.AdapterPosts;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -28,8 +30,22 @@ public class PostActivity extends AppCompatActivity {
         inicializar();
         recyclerViewPosts=findViewById(R.id.Recycler_view2);
 
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
 
-        btnEliminar.setOnClickListener(new View.OnClickListener() {
+                Intent intent = new Intent(PostActivity.this,AgregarActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+
+
+        /*btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(PostActivity.this);
@@ -68,7 +84,7 @@ public class PostActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
     }
 
