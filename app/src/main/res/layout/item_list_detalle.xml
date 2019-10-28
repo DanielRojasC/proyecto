@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff"
     android:orientation="horizontal"
     android:padding="2dp">
 
@@ -53,14 +52,18 @@
 
         <ImageButton
             android:id="@+id/btnEditar"
+            style="@android:style/Widget.ImageButton"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
             android:padding="5dp"
-            android:src="@drawable/edirar_icon" />
+            android:src="@drawable/edit_icon"
+            android:layout_marginRight="7dp"/>
 
         <ImageButton
             android:id="@+id/btnEliminar"
@@ -71,7 +74,8 @@
             android:layout_marginEnd="43dp"
             android:layout_marginBottom="9dp"
             android:padding="5dp"
-            android:src="@drawable/eliminar_icon" />
+            android:src="@drawable/eliminar_icon"
+            />
     </RelativeLayout>
 
 
