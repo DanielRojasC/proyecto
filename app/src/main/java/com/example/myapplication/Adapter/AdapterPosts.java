@@ -3,6 +3,7 @@ package com.example.myapplication.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -71,6 +72,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
         TextView txtTitulo;
         TextView txtContenido;
         TextView txtDescripcion;
+        ImageButton btnEliminar, btnEditar;
 
         public Holder(final View itemView)
         {
@@ -94,8 +96,9 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
 
 
             txtTitulo=itemView.findViewById(R.id.username);
-            txtContenido=itemView.findViewById(R.id.contenido);
             txtDescripcion=itemView.findViewById(R.id.descripcion);
+            btnEditar = itemView.findViewById(R.id.btnEditar);
+            btnEliminar = itemView.findViewById(R.id.btnEliminar);
 
 
 
@@ -105,7 +108,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
         {
 
             txtTitulo.setText("Título: "+Posts.getTitle());
-            txtContenido.setText("Contenido: \n"+Posts.getBody());
+            txtDescripcion.setText("Contenido: \n"+Posts.getBody());
 
         }
     }
