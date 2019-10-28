@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,10 +31,18 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     RequestQueue queue;
-    ArrayList<Usuarios> arrayListUsuarios = new ArrayList<>();
+
+    //****** SE COLOCA EL ARRAY DE LA INFORMACIÓN DEL USUARIO COMO ESTÁTICO PARA ACCEDER A ÉL ******//
+    static public ArrayList<Usuarios> arrayListUsuarios = new ArrayList<>();
     Gson gson= new Gson();
     RecyclerView recyclerViewUsuario;
     static public ArrayList<Posts> arrayListPosts= new ArrayList<>();
+
+    //****** SE CREA UNA VARIABLE ESTÁTICA "idUsuario" PARA ACCEDER A ELLA SEGÚN SE NECESITE EN LAS FUNCIONES DE CRUD ******//
+    static public String idUsuario;
+
+    //****** SE CREA UN CONTEXT ESTÁTICO PARA ACCEDER A ÉL DESDE EL ADAPTADOR ******//
+    public static Context context;
 
     static public String userName;
     @Override
@@ -97,6 +106,11 @@ public class MainActivity extends AppCompatActivity {
                         }.getType();
                         arrayListPosts = gson.fromJson(response, type);
                         userName=arrayListUsuarios.get(position).getUsername();
+
+                        //****** SE SETEA LA VARIABLE ESTÁTICA "idUsuario" CON EL CLICK SEGÚN LA POSICION DEL ADAPTADOR ******//
+                        idUsuario=arrayListUsuarios.get(position).getId().toString();
+
+
                         Intent intent= new Intent(getApplicationContext(), PostActivity.class);
                         startActivity(intent);
 
@@ -121,5 +135,6 @@ public class MainActivity extends AppCompatActivity {
     private void inicializar() {
         queue= Volley.newRequestQueue(this);
         recyclerViewUsuario=findViewById(R.id.Recycler_view);
+        context=getApplicationContext();
     }
 }
