@@ -15,10 +15,18 @@
         android:layout_margin="16dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="39dp"
-        android:src="@drawable/edirar_icon"
+        android:backgroundTint="@color/colorPrimary"
+        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+        android:soundEffectsEnabled="false"
+        android:src="@drawable/agregar_icon"
+        android:tintMode="multiply"
+        android:verticalScrollbarPosition="left"
+        android:visibility="visible"
+        app:backgroundTint="#00FFFFFF"
+        app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/colorPrimary"/>
+        app:useCompatPadding="false" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recycler_view2"

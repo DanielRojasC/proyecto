@@ -7,8 +7,10 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +74,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
     @Override
     public void onBindViewHolder(@NonNull AdapterPosts.Holder holder, int position) {
 
+        holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(MainActivity.context,R.anim.fade_scale_animation));
 
         holder.fijarDatos(Posts.get(position));
 
@@ -89,7 +92,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
     public class Holder extends RecyclerView.ViewHolder
     {
 
-
+        RelativeLayout relativeLayout;
         TextView txtTitulo;
         TextView txtContenido;
         TextView txtDescripcion;
@@ -115,7 +118,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.Holder> {
                 }
             });
 
-
+            relativeLayout = itemView.findViewById(R.id.relativeLayout);
             txtTitulo=itemView.findViewById(R.id.username);
             txtDescripcion=itemView.findViewById(R.id.descripcion);
             btnEditar = itemView.findViewById(R.id.btnEditar);

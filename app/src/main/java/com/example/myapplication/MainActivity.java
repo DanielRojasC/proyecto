@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.Adapter;
 import com.example.myapplication.Clases.Posts;
 import com.example.myapplication.Clases.Usuarios;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Gson gson= new Gson();
     RecyclerView recyclerViewUsuario;
     static public ArrayList<Posts> arrayListPosts= new ArrayList<>();
+
 
     //****** SE CREA UNA VARIABLE ESTÁTICA "idUsuario" PARA ACCEDER A ELLA SEGÚN SE NECESITE EN LAS FUNCIONES DE CRUD ******//
     static public String idUsuario;

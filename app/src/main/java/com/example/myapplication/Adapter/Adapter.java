@@ -1,9 +1,12 @@
 package com.example.myapplication.Adapter;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 //import androidx.recyclerview.widget.RecyclerView;
@@ -18,10 +21,12 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
 
     ArrayList<com.example.myapplication.Clases.Usuarios> Usuarios;
-
+    private Context mContext;
     private OnClickListener mlistener;
     public interface OnClickListener
     {
@@ -51,6 +56,10 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Adapter.Holder holder, int position) {
 
+        holder.profileimg.setAnimation(AnimationUtils.loadAnimation(MainActivity.context,R.anim.fade_transition_animator));
+        holder.txtEmail.setAnimation(AnimationUtils.loadAnimation(MainActivity.context,R.anim.fade_transition_animator));
+        holder.txtUsername.setAnimation(AnimationUtils.loadAnimation(MainActivity.context,R.anim.fade_transition_animator));
+        holder.linearLayout.setAnimation(AnimationUtils.loadAnimation(MainActivity.context,R.anim.fade_scale_animation));
 
         holder.fijarDatos(Usuarios.get(position));
 
@@ -67,10 +76,10 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
 
     public class Holder extends RecyclerView.ViewHolder
     {
-
-
+        LinearLayout linearLayout;
         TextView txtUsername;
         TextView txtEmail;
+        CircleImageView profileimg;
 
         public Holder(final View itemView)
         {
@@ -92,8 +101,10 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
                 }
             });
 
+            linearLayout = itemView.findViewById(R.id.linearLayout);
             txtUsername  =itemView.findViewById(R.id.username);
             txtEmail=itemView.findViewById(R.id.descripcion);
+            profileimg = itemView.findViewById(R.id.profile_img);
 
 
 

@@ -12,7 +12,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="382dp"
         android:layout_height="189dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="13dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/card_bg"
@@ -47,7 +47,6 @@
             android:layout_marginTop="3dp"
             android:padding="2dp"
             android:text="descripcion"
-            android:textColor="@color/contenTexcolor"
             android:textSize="14dp" />
 
         <ImageButton

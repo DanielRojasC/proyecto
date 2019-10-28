@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -51,11 +55,12 @@ public class PostActivity extends AppCompatActivity {
         recyclerViewPosts=findViewById(R.id.Recycler_view2);
 
         FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setAnimation(AnimationUtils.loadAnimation(MainActivity.context,R.anim.fade_scale_animation));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Editando", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();*/
 
                 //****** SE CREA EL DIALOG PARA CREAR POSTS Y SE DECLARAN LOS INPUT ETC******//
 
@@ -97,8 +102,7 @@ public class PostActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         //****** SE CREA LA URL ******//
-
-                        String url = "https://jsonplaceholder.typicode.com/post";
+                        String url = "https://jsonplaceholder.typicode.com/posts";
 
                         //****** SE CREA UNA SOLICITUD DE COLA DONDE SE LE MANDA EL MÉTODO "POST", LA URL Y SE CREAN LOS EVENTOS "RESPONSE" Y "ON ERROR RESPONSE" ******//
 
