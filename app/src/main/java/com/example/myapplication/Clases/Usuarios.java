@@ -42,6 +42,39 @@ public class Usuarios {
     String name;
     String username;
     String email;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public Direccion getAddress() {
+        return address;
+    }
+
+    public void setAddress(Direccion address) {
+        this.address = address;
+    }
+
+    public Compañia getCompany() {
+        return company;
+    }
+
+    public void setCompany(Compañia company) {
+        this.company = company;
+    }
+
     String phone;
     String website;
 

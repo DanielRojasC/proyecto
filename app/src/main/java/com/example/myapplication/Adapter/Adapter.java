@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapter;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,6 +116,46 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.Holder> {
 
             txtUsername.setText(Usuarios.getUsername());
             txtEmail.setText(Usuarios.getEmail());
+
+            profileimg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Dialog dialogDatos=new Dialog(itemView.getContext());
+                    TextView txtUsername,txtName,txtEmail,txtTelefono,txtWebsite,txtZipcode,txtCity,txtSuit,txtStreet,txtCatchaPhrase,txtNameCompany, txtBs;
+                    dialogDatos.setContentView(R.layout.activity_info);
+                    dialogDatos.setCancelable(true);
+                    txtUsername=dialogDatos.findViewById(R.id.username);
+                    txtName=dialogDatos.findViewById(R.id.name);
+                    txtEmail=dialogDatos.findViewById(R.id.email);
+                    txtTelefono=dialogDatos.findViewById(R.id.telefono);
+                    txtWebsite=dialogDatos.findViewById(R.id.webside);
+                    txtZipcode=dialogDatos.findViewById(R.id.zipcode);
+                    txtCity=dialogDatos.findViewById(R.id.city);
+                    txtSuit=dialogDatos.findViewById(R.id.suit);
+                    txtStreet=dialogDatos.findViewById(R.id.street);
+                    txtBs=dialogDatos.findViewById(R.id.bs);
+                    txtCatchaPhrase=dialogDatos.findViewById(R.id.catchPhrase);
+                    txtNameCompany=dialogDatos.findViewById(R.id.nameCompany);
+
+                    dialogDatos.create();
+                    dialogDatos.show();
+
+                    txtUsername.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getUsername().toString());
+                    txtName.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getName().toString());
+                    txtEmail.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getEmail().toString());
+                    txtTelefono.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getPhone().toString());
+                    txtWebsite.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getWebsite().toString());
+                    txtZipcode.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getAddress().getZipcode().toString());
+                    txtCity.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getAddress().getCity().toString());
+                    txtSuit.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getAddress().getSuite().toString());
+                    txtStreet.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getAddress().getStreet().toString());
+                    txtBs.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getCompany().getBs().toString());
+                    txtCatchaPhrase.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getCompany().getCatchPhrase().toString());
+                    txtNameCompany.setText(MainActivity.arrayListUsuarios.get(getAdapterPosition()).getCompany().getName().toString());
+
+
+                }
+            });
 
 
         }
